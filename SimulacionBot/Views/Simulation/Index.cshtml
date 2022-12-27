@@ -1,0 +1,124 @@
+﻿@model IEnumerable<SimulacionBot.Models.DT_Mensajes_Telefonica_DigitalBlue>
+
+@{
+    ViewBag.Title = "Index";
+}
+<br />
+
+<h2>Subir Datos Bot</h2>
+
+<form method="post" action="/Simulation/Import" enctype="multipart/form-data" class="auto ui large form">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <label for="ejemplo">Escoja el archivo</label>
+        <br />
+        <input type="file" class="form-control-file" name="file" id="file" required>
+        <br />
+        <button type="submit" class="btn btn-info">
+            Subir
+        </button>
+    </div>
+</form>
+@if (ViewData["Mensaje"] != null)
+{
+    //SE CREA LECTOR DE ERROR
+    <div class="alert alert-danger" role="alert">
+        @ViewData["Mensaje"]
+    </div>
+}
+
+@if (ViewData["MensajeCarga"] != null)
+{
+    //SE CREA LECTOR DE Éxito
+    <div class="alert alert-success" role="alert">
+        @ViewData["MensajeCarga"]
+    </div>
+}
+<br />
+@*<input type="button" value="Borrado de Datos" onclick="location.href='@Url.Action("Delete", "Simulation")'" />*@
+@if (ViewData["MensajeCarga"] != null)
+{
+<h2>Nuevos Datos Cargados</h2>
+}
+else
+{
+<h2>Sin Procesar</h2>
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ServiceNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Observaciones)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Departamento)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ciudad)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstadoCliente)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TipoBase)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Particion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Observaciones)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ciudad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EstadoCliente)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoBase)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Particion)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+
