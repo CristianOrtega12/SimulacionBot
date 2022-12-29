@@ -12,19 +12,16 @@ namespace SimulacionBot.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DT_Mensajes_Telefonica_DigitalBlue
+    public partial class DT_Mensajes_Telefonica_DigitalBlue_Bk
     {
         public int Id { get; set; }
-        public string ServiceNumber { get; set; }
-        public string Observaciones { get; set; }
-        public string Cliente { get; set; }
-        public string Departamento { get; set; }
-        public string Ciudad { get; set; }
-        public System.DateTime CreatedAt { get; set; }
-        public bool Estado { get; set; }
+        public string Telefono { get; set; }
+        public string Mensaje { get; set; }
+        public string Motivo { get; set; }
+        public Nullable<int> TipoBase { get; set; }
+        public Nullable<System.DateTime> CreatedAt { get; set; }
+        public Nullable<bool> Estado { get; set; }
         public Nullable<System.DateTime> UpdateAt { get; set; }
         public string EstadoCliente { get; set; }
-        public Nullable<int> TipoBase { get; set; }
-        public Nullable<int> Particion { get; set; }
     }
 }

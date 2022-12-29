@@ -1,71 +1,66 @@
-﻿@model IEnumerable<SimulacionBot.Models.DT_Mensajes_Telefonica_DigitalBlue>
+﻿@model IEnumerable<SimulacionBot.Models.DT_Mensajes_Telefonica_DigitalBlue_Bk>
 
 @{
     ViewBag.Title = "Index";
 }
 <br />
 
-<h2>Subir Datos Bot</h2>
+<h2 style="background-color: #000 ; color:white" class="text-center">Subir Datos Bot</h2>
+<div class="container" style="display: flex; justify-content: center; border-style: inset">
+    <form method="post" action="/Simulation/Import" enctype="multipart/form-data" class="auto ui large form">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <br />
+            <input type="file" accept=".xlsx" class="form-control-file" name="file" id="file" required>
+            <br />
+            <button type="submit" class="btn btn-group-justified text-center" style="border-color:black" >
+                Subir
+            </button>
+        </div>
+    </form>
+    @if (ViewData["Mensaje"] != null)
+    {
+        //SE CREA LECTOR DE ERROR
+        <div class="alert alert-danger" role="alert">
+            @ViewData["Mensaje"]
+        </div>
+    }
 
-<form method="post" action="/Simulation/Import" enctype="multipart/form-data" class="auto ui large form">
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    <div class="form-group">
-        <label for="ejemplo">Escoja el archivo</label>
-        <br />
-        <input type="file" class="form-control-file" name="file" id="file" required>
-        <br />
-        <button type="submit" class="btn btn-info">
-            Subir
-        </button>
-    </div>
-</form>
-@if (ViewData["Mensaje"] != null)
-{
-    //SE CREA LECTOR DE ERROR
-    <div class="alert alert-danger" role="alert">
-        @ViewData["Mensaje"]
-    </div>
-}
+    @if (ViewData["MensajeCarga"] != null)
+    {
+        //SE CREA LECTOR DE Éxito
+        <div class="alert alert-success" role="alert">
+            @ViewData["MensajeCarga"]
+        </div>
+    }
+</div>
 
-@if (ViewData["MensajeCarga"] != null)
-{
-    //SE CREA LECTOR DE Éxito
-    <div class="alert alert-success" role="alert">
-        @ViewData["MensajeCarga"]
-    </div>
-}
 <br />
 @*<input type="button" value="Borrado de Datos" onclick="location.href='@Url.Action("Delete", "Simulation")'" />*@
 @if (ViewData["MensajeCarga"] != null)
 {
-<h2>Nuevos Datos Cargados</h2>
+<h2 style="background-color: #000 ; color:white" class="text-center">Nuevos Datos Cargados</h2>
 }
 else
 {
-<h2>Sin Procesar</h2>
+<h2 style="background-color: #000 ; color:white" class="text-center">Sin Procesar</h2>
 }
 
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ServiceNumber)
+            @Html.DisplayNameFor(model => model.Telefono)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Observaciones)
+            @Html.DisplayNameFor(model => model.Mensaje)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Cliente)
+            @Html.DisplayNameFor(model => model.Motivo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Departamento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ciudad)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdateAt)
+            @Html.DisplayNameFor(model => model.CreatedAt)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
@@ -76,9 +71,6 @@ else
         <th>
             @Html.DisplayNameFor(model => model.TipoBase)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Particion)
-        </th>
         <th></th>
     </tr>
 
@@ -86,22 +78,16 @@ else
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ServiceNumber)
+                @Html.DisplayFor(modelItem => item.Telefono)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Observaciones)
+                @Html.DisplayFor(modelItem => item.Mensaje)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cliente)
+                @Html.DisplayFor(modelItem => item.Motivo)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Departamento)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ciudad)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateAt)
+                @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
@@ -111,9 +97,6 @@ else
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoBase)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Particion)
             </td>
 
         </tr>

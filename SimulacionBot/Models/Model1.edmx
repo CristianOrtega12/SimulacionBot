@@ -5,9 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DBSimulacionBotModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'DBSimulacion.dbo.DT_Mensajes_Telefonica_DigitalBlue' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue">
           <Key>
             <PropertyRef Name="Id" />
+            
+            
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceNumber" Type="nvarchar(max)" />
@@ -22,54 +26,78 @@
           <Property Name="TipoBase" Type="int" />
           <Property Name="Particion" Type="int" />
         </EntityType>
+        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue_Bk">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="12" />
+          <Property Name="Mensaje" Type="nvarchar" MaxLength="500" />
+          <Property Name="Motivo" Type="nvarchar" MaxLength="50" />
+          <Property Name="TipoBase" Type="int" />
+          <Property Name="CreatedAt" Type="datetime2" Precision="7" />
+          <Property Name="Estado" Type="bit" />
+          <Property Name="UpdateAt" Type="datetime2" Precision="7" />
+          <Property Name="EstadoCliente" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <EntityContainer Name="DBSimulacionBotModelStoreContainer">
-          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue_Bk" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue_Bk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Id] AS [Id], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[ServiceNumber] AS [ServiceNumber], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Observaciones] AS [Observaciones], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Cliente] AS [Cliente], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Departamento] AS [Departamento], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Ciudad] AS [Ciudad], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[CreatedAt] AS [CreatedAt], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Estado] AS [Estado], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[UpdateAt] AS [UpdateAt], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[EstadoCliente] AS [EstadoCliente], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[TipoBase] AS [TipoBase], 
+    [DT_Mensajes_Telefonica_DigitalBlue].[Particion] AS [Particion]
+    FROM [dbo].[DT_Mensajes_Telefonica_DigitalBlue] AS [DT_Mensajes_Telefonica_DigitalBlue]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBSimulacionBotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue">
+        <EntityContainer Name="DBSimulacionBotEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue_Bk" EntityType="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_Bk" />
+        </EntityContainer>
+        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue_Bk">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ServiceNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Cliente" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Departamento" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Ciudad" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="CreatedAt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Estado" Type="Boolean" Nullable="false" />
-          <Property Name="UpdateAt" Type="DateTime" Precision="3" />
-          <Property Name="EstadoCliente" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Mensaje" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Motivo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TipoBase" Type="Int32" />
-          <Property Name="Particion" Type="Int32" />
+          <Property Name="CreatedAt" Type="DateTime" Precision="7" />
+          <Property Name="Estado" Type="Boolean" />
+          <Property Name="UpdateAt" Type="DateTime" Precision="7" />
+          <Property Name="EstadoCliente" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityContainer Name="DBSimulacionBotEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue" />
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBSimulacionBotModelStoreContainer" CdmEntityContainer="DBSimulacionBotEntities">
-          <EntitySetMapping Name="DT_Mensajes_Telefonica_DigitalBlue">
-            <EntityTypeMapping TypeName="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue">
-              <MappingFragment StoreEntitySet="DT_Mensajes_Telefonica_DigitalBlue">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ServiceNumber" ColumnName="ServiceNumber" />
-                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
-                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
-                <ScalarProperty Name="Departamento" ColumnName="Departamento" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+          <EntitySetMapping Name="DT_Mensajes_Telefonica_DigitalBlue_Bk">
+            <EntityTypeMapping TypeName="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_Bk">
+              <MappingFragment StoreEntitySet="DT_Mensajes_Telefonica_DigitalBlue_Bk">
                 <ScalarProperty Name="EstadoCliente" ColumnName="EstadoCliente" />
+                <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CreatedAt" ColumnName="CreatedAt" />
                 <ScalarProperty Name="TipoBase" ColumnName="TipoBase" />
-                <ScalarProperty Name="Particion" ColumnName="Particion" />
+                <ScalarProperty Name="Motivo" ColumnName="Motivo" />
+                <ScalarProperty Name="Mensaje" ColumnName="Mensaje" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

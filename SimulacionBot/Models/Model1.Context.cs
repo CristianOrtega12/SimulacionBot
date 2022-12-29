@@ -25,6 +25,6 @@ namespace SimulacionBot.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<DT_Mensajes_Telefonica_DigitalBlue> DT_Mensajes_Telefonica_DigitalBlue { get; set; }
+        public virtual DbSet<DT_Mensajes_Telefonica_DigitalBlue_Bk> DT_Mensajes_Telefonica_DigitalBlue_Bk { get; set; }
     }
 }
