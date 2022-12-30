@@ -3,7 +3,7 @@
 <br />
 <br />
 <div class="alert alert-warning" role="alert">
-    <p>Se recomienda descargar la informacion ya que si se borran los datos estos se perderan </p>
+    <p>Se recomienda descargar la informacion ya que si se borran estos se perderan </p>
 </div>
 @*<input type="button" value="Borrado de Datos" onclick="location.href='@Url.Action("DeleteAll", "Simulation")'" />
     <input class="btn btn-lg btn-success" type="button" value="Descargar Activos Actuales" onclick="location.href='@Url.Action("Descargar", "Simulation")'" />*@
@@ -19,7 +19,7 @@
 
 <br />
 
-<h2 style="background-color: #000 ; color:white" class="text-center">Sin Procesar</h2>
+<h2 style="background-color: #000 ; color:white" class="text-center">@Session["TipoNombre"] Sin Procesar </h2>
 <table class="table">
     <tr>
         <th>
@@ -32,19 +32,13 @@
             @Html.DisplayNameFor(model => model.Motivo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            Fecha de Creación
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UpdateAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstadoCliente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoBase)
+            Tipo de Base
         </th>
         <th></th>
     </tr>
@@ -66,12 +60,6 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UpdateAt)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoCliente)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoBase)

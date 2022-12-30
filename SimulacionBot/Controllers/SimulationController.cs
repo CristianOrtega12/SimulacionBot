@@ -28,6 +28,19 @@ namespace SimulacionBot.Controllers
         public ActionResult Delete(int tipo)
         {
             Session["Tipo"] = tipo;
+            if (tipo == 1)
+            {
+                Session["TipoNombre"] = "Domicilios";
+            }
+            else if (tipo == 2)
+            {
+                Session["TipoNombre"] = "Rechazos";
+            }
+            else if (tipo == 3)
+            {
+                Session["TipoNombre"] = "Pendientes";
+            }
+            
             return View(db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x => x.Estado==false && x.TipoBase==tipo).ToList());
         }
         

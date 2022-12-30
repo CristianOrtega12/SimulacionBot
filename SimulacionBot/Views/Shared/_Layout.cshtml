@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title Datos Bot</title>
+    <title>Datos Bot</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Images/AbaiImage.ico" rel="icon" />
@@ -14,12 +14,14 @@
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container" style="display:flex" >
+        <div class="container-fluid" style="display:flex" >
             <div class="container" style="display:flex ; justify-content:initial ;color:white">
-                <h3 style="margin-top:14px">Simulacion Bot</h3>
+
+                <img src="~/Images/robot.png" alt="Alternate Text" style="width:50px" />
+                <h3 style="margin-top:14px">Datos Bot</h3>
             </div>
             <div class="container navbar-header" style="display:flex ; justify-content:end">
-                    @Html.ActionLink("INICIO", "Index", "Simulation", new { area = "" }, new { @class = "navbar-brand" })
+                    @Html.ActionLink("CARGUE", "Index", "Simulation", new { area = "" }, new { @class = "navbar-brand" })
                     @Html.ActionLink("DOMICILIOS", "Delete", "Simulation", new { tipo = 1 }, new { @class = "navbar-brand" })
                     @Html.ActionLink("RECHAZOS", "Delete", "Simulation", new { tipo = 2 }, new { @class = "navbar-brand" })
                     @Html.ActionLink("PENDIENTES", "Delete", "Simulation", new { tipo = 3 }, new { @class = "navbar-brand" })
@@ -31,7 +33,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - ABAI</p>
         </footer>
     </div>
 

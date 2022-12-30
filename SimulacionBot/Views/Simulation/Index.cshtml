@@ -4,9 +4,8 @@
     ViewBag.Title = "Index";
 }
 <br />
-
-<h2 style="background-color: #000 ; color:white" class="text-center">Subir Datos Bot</h2>
-<div class="container" style="display: flex; justify-content: center; border-style: inset">
+<h2 style="background-color: #000 ; color:white" class="text-center">Subir Datos</h2>
+<div class="container-fluid " style="display: flex; justify-content: center; border-style: inset">
     <form method="post" action="/Simulation/Import" enctype="multipart/form-data" class="auto ui large form">
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -60,16 +59,13 @@ else
             @Html.DisplayNameFor(model => model.Motivo)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
+            Fecha de Creación
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EstadoCliente)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoBase)
+            Tipo de Base
         </th>
         <th></th>
     </tr>
@@ -91,9 +87,6 @@ else
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EstadoCliente)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TipoBase)
