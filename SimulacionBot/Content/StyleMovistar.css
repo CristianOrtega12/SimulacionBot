@@ -1,0 +1,17 @@
+﻿.barra{
+    color:white !important;
+}
+    .barra:hover {
+        color: black !important;
+    }
+.h2Texto {
+    align-content: end !important;
+    background-color: #02a9de !important;
+    color: white !important;
+}
+.bordeNegro {
+    border-color: black !important;
+}
+    .bordeNegro:hover {
+        background-color: #02a9de;
+    }

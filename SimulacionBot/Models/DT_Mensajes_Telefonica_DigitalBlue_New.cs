@@ -12,7 +12,7 @@ namespace SimulacionBot.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DT_Mensajes_Telefonica_DigitalBlue_Bk
+    public partial class DT_Mensajes_Telefonica_DigitalBlue_New
     {
         public int Id { get; set; }
         public string Telefono { get; set; }

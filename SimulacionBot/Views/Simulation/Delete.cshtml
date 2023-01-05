@@ -1,25 +1,27 @@
-﻿@model IEnumerable<SimulacionBot.Models.DT_Mensajes_Telefonica_DigitalBlue_Bk>
+﻿@model IEnumerable<SimulacionBot.Models.DT_Mensajes_Telefonica_DigitalBlue_New>
 
 <br />
 <br />
-<div class="alert alert-warning" role="alert">
-    <p>Se recomienda descargar la informacion ya que si se borran estos se perderan </p>
+<div class="alert alert-warning text-center" role="alert">
+    <p>Se recomienda descargar la informacion ya que si se borra esta se perdera </p>
 </div>
 @*<input type="button" value="Borrado de Datos" onclick="location.href='@Url.Action("DeleteAll", "Simulation")'" />
     <input class="btn btn-lg btn-success" type="button" value="Descargar Activos Actuales" onclick="location.href='@Url.Action("Descargar", "Simulation")'" />*@
 
+<div class="container-fluid text-center">
+    <a class="btn btn-lg btn-danger" href=@Url.Action("DeleteAll", "Simulation")>
+        <i class="glyphicon glyphicon-remove pull-left"></i><span>Borrado de Datos<br></span>
+    </a>
 
-<a class="btn btn-lg btn-danger" href=@Url.Action("DeleteAll", "Simulation")>
-    <i class="glyphicon glyphicon-remove pull-left"></i><span>Borrado de Datos<br></span>
-</a>
+    <a class="btn btn-lg btn-success" href='@Url.Action("Descargar", "Simulation")'>
+        <i class="glyphicon glyphicon-download-alt pull-left"></i><span>Descargar Datos<br></span>
+    </a>
+</div>
 
-<a class="btn btn-lg btn-success" href='@Url.Action("Descargar", "Simulation")'>
-    <i class="glyphicon glyphicon-download-alt pull-left"></i><span>Descargar Activos Actuales<br></span>
-</a>
 
 <br />
 
-<h2 style="background-color: #000 ; color:white" class="text-center">@Session["TipoNombre"] Sin Procesar </h2>
+<h2  class="text-center h2Texto">@Session["TipoNombre"] Sin Procesar </h2>
 <table class="table">
     <tr>
         <th>
@@ -32,13 +34,13 @@
             @Html.DisplayNameFor(model => model.Motivo)
         </th>
         <th>
-            Fecha de Creación
+            Creación
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Estado)
         </th>
         <th>
-            Tipo de Base
+            Tipo
         </th>
         <th></th>
     </tr>

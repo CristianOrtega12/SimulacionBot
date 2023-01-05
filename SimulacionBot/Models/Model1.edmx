@@ -10,8 +10,8 @@ advertencia 6002: La tabla o vista 'DBSimulacion.dbo.DT_Mensajes_Telefonica_Digi
         <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue">
           <Key>
             <PropertyRef Name="Id" />
-            
-            
+            <PropertyRef Name="CreatedAt" />
+            <PropertyRef Name="Estado" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ServiceNumber" Type="nvarchar(max)" />
@@ -26,7 +26,7 @@ advertencia 6002: La tabla o vista 'DBSimulacion.dbo.DT_Mensajes_Telefonica_Digi
           <Property Name="TipoBase" Type="int" />
           <Property Name="Particion" Type="int" />
         </EntityType>
-        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue_Bk">
+        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue_New">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -41,7 +41,7 @@ advertencia 6002: La tabla o vista 'DBSimulacion.dbo.DT_Mensajes_Telefonica_Digi
           <Property Name="EstadoCliente" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityContainer Name="DBSimulacionBotModelStoreContainer">
-          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue_Bk" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue_Bk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue_New" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue_New" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue" EntityType="Self.DT_Mensajes_Telefonica_DigitalBlue" store:Type="Tables" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [DT_Mensajes_Telefonica_DigitalBlue].[Id] AS [Id], 
@@ -64,9 +64,9 @@ advertencia 6002: La tabla o vista 'DBSimulacion.dbo.DT_Mensajes_Telefonica_Digi
     <edmx:ConceptualModels>
       <Schema Namespace="DBSimulacionBotModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DBSimulacionBotEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue_Bk" EntityType="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_Bk" />
+          <EntitySet Name="DT_Mensajes_Telefonica_DigitalBlue_New" EntityType="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_New" />
         </EntityContainer>
-        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue_Bk">
+        <EntityType Name="DT_Mensajes_Telefonica_DigitalBlue_New">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -86,9 +86,9 @@ advertencia 6002: La tabla o vista 'DBSimulacion.dbo.DT_Mensajes_Telefonica_Digi
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBSimulacionBotModelStoreContainer" CdmEntityContainer="DBSimulacionBotEntities">
-          <EntitySetMapping Name="DT_Mensajes_Telefonica_DigitalBlue_Bk">
-            <EntityTypeMapping TypeName="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_Bk">
-              <MappingFragment StoreEntitySet="DT_Mensajes_Telefonica_DigitalBlue_Bk">
+          <EntitySetMapping Name="DT_Mensajes_Telefonica_DigitalBlue_New">
+            <EntityTypeMapping TypeName="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_New">
+              <MappingFragment StoreEntitySet="DT_Mensajes_Telefonica_DigitalBlue_New">
                 <ScalarProperty Name="EstadoCliente" ColumnName="EstadoCliente" />
                 <ScalarProperty Name="UpdateAt" ColumnName="UpdateAt" />
                 <ScalarProperty Name="Estado" ColumnName="Estado" />

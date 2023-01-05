@@ -22,7 +22,7 @@ namespace SimulacionBot.Controllers
         // GET: Simulation
         public ActionResult Index()
         {
-            return View(db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x => x.Estado == false).ToList());
+            return View(db.DT_Mensajes_Telefonica_DigitalBlue_New.Where(x => x.Estado == false).ToList());
         }
         // GET: Borrar Datos
         public ActionResult Delete(int tipo)
@@ -34,21 +34,21 @@ namespace SimulacionBot.Controllers
             }
             else if (tipo == 2)
             {
-                Session["TipoNombre"] = "Rechazos";
+                Session["TipoNombre"] = "Pendientes";
             }
             else if (tipo == 3)
             {
-                Session["TipoNombre"] = "Pendientes";
+                Session["TipoNombre"] = "Rechazos";
             }
             
-            return View(db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x => x.Estado==false && x.TipoBase==tipo).ToList());
+            return View(db.DT_Mensajes_Telefonica_DigitalBlue_New.Where(x => x.Estado==false && x.TipoBase==tipo).ToList());
         }
         
         [HttpPost]
         public ActionResult DeleteR()
         {
-            var activos = db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x => x.Estado == false);
-            db.DT_Mensajes_Telefonica_DigitalBlue_Bk.RemoveRange(activos);
+            var activos = db.DT_Mensajes_Telefonica_DigitalBlue_New.Where(x => x.Estado == false);
+            db.DT_Mensajes_Telefonica_DigitalBlue_New.RemoveRange(activos);
             db.SaveChanges();
             return RedirectToAction("Index");
         }
@@ -56,11 +56,11 @@ namespace SimulacionBot.Controllers
         public ActionResult DeleteAll()
         {
             int tipo = (int)Session["Tipo"];
-            var activos = db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x => x.Estado == false && x.TipoBase==tipo);
+            var activos = db.DT_Mensajes_Telefonica_DigitalBlue_New.Where(x => x.Estado == false && x.TipoBase==tipo);
             var vacio = activos.Count();
             if (vacio>0)
             {
-                db.DT_Mensajes_Telefonica_DigitalBlue_Bk.RemoveRange(activos);
+                db.DT_Mensajes_Telefonica_DigitalBlue_New.RemoveRange(activos);
                 db.SaveChanges();
             }
             return RedirectToAction("Index");
@@ -69,7 +69,7 @@ namespace SimulacionBot.Controllers
         public void Descargar()
         {
             int tipo = (int)Session["Tipo"];
-            var lista = db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x=> x.Estado==false && x.TipoBase==tipo).ToList();
+            var lista = db.DT_Mensajes_Telefonica_DigitalBlue_New.Where(x=> x.Estado==false && x.TipoBase==tipo).ToList();
             var listaDT = ConvertListToDatatable.ToDataTable(lista);
             //listaDT.Columns.Remove("__v");
             listaDT.Columns.Remove("Id");
@@ -104,12 +104,12 @@ namespace SimulacionBot.Controllers
         }
         public ActionResult Import (HttpPostedFileBase file)
         {
-            var list = new List<DT_Mensajes_Telefonica_DigitalBlue_Bk>();
+            var list = new List<DT_Mensajes_Telefonica_DigitalBlue_New>();
             if (file == null || !file.FileName.Contains("xlsx"))
             {
                 ViewData["Mensaje"] = "Archivo no encontrado o no seleccionado intenta de nuevo";
                 db.SaveChanges();
-                return View("Index", db.DT_Mensajes_Telefonica_DigitalBlue_Bk.Where(x => x.Estado == false).ToList());
+                return View("Index", db.DT_Mensajes_Telefonica_DigitalBlue_New.Where(x => x.Estado == false).ToList());
             }
             using (var package = new ExcelPackage(file.InputStream))
             {
@@ -131,7 +131,7 @@ namespace SimulacionBot.Controllers
                 for (int row = 2; worksheet.Cells[row, col].Value != null; row++)
                 {
                     // do something with worksheet.Cells[row, col].Value
-                    list.Add(new DT_Mensajes_Telefonica_DigitalBlue_Bk
+                    list.Add(new DT_Mensajes_Telefonica_DigitalBlue_New
                     {
                         Telefono = worksheet.Cells[row, 1].Value.ToString().Trim(),
                         Mensaje = worksheet.Cells[row, 2].Value.ToString().Trim(),
@@ -144,7 +144,7 @@ namespace SimulacionBot.Controllers
             } // the using 
             if (list.Count()>0)
             {
-                db.DT_Mensajes_Telefonica_DigitalBlue_Bk.AddRange(list);
+                db.DT_Mensajes_Telefonica_DigitalBlue_New.AddRange(list);
                 db.SaveChanges();
                 ViewData["MensajeCarga"] = "Carga Éxitosa";
             }

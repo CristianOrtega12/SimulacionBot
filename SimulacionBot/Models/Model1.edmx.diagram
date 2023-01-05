@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="222fe258113444f7b7f146725d617a6e" Name="Diagram1">
-        <EntityTypeShape EntityType="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_Bk" Width="1.5" PointX="4.375" PointY="0.75" />
+        <EntityTypeShape EntityType="DBSimulacionBotModel.DT_Mensajes_Telefonica_DigitalBlue_New" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
